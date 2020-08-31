@@ -238,19 +238,19 @@ export default {
 				this.flag = true;
 				if (res.code == 200) {
 					if (res.data.service_status == 0) {
-						uni.redirectTo({
+						uni.reLaunch({
 							url: '/pages/creditorServer/creditorServer'
 						});
 					} else if (res.data.agree_status == 0) {
-						uni.redirectTo({
+						uni.reLaunch({
 							url: '/pages/step/agreement/agreement'
 						});
 					} else if (res.data.auth_status == 0) {
-						uni.redirectTo({
+						uni.reLaunch({
 							url: '/pages/step/idAuth/idAuth'
 						});
 					} else if (res.data.invite_status == 0) {
-						uni.redirectTo({
+						uni.reLaunch({
 							url: '/pages/step/mall/mall'
 						});
 					} else {

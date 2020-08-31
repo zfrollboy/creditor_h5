@@ -82,7 +82,7 @@ export default {
 				this.getExplain(e.hasReg);
 				this.getIndexData();
 			} else {
-				this.getAgreement();
+				// this.getAgreement();
 			} //从服务中心过来不显示button
 		}
 		if (e.hasReg == 1) {
@@ -206,7 +206,7 @@ export default {
 					this.setData({
 						showForm: false
 					});
-					uni.redirectTo({
+					uni.reLaunch({
 						url: '/pages/step/agreement/agreement'
 					});
 				} else if (res.code == 99) {
@@ -259,19 +259,19 @@ export default {
 								memberCompleted: true
 							});
 						} else if (res.data.agree_status == 0) {
-							uni.redirectTo({
+							uni.reLaunch({
 								url: '/pages/step/agreement/agreement'
 							});
 						} else if (res.data.auth_status == 0) {
-							uni.redirectTo({
+							uni.reLaunch({
 								url: '/pages/step/idAuth/idAuth'
 							});
 						} else if (res.data.invite_status == 0) {
-							uni.redirectTo({
+							uni.reLaunch({
 								url: '/pages/step/mall/mall'
 							});
 						} else {
-							uni.redirectTo({
+							uni.reLaunch({
 								url: '/pages/creditorDetail/creditorDetail'
 							});
 						}

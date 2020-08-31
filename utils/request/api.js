@@ -118,7 +118,7 @@ const delBankCard = (param = {}) => {
 //商品列表
 const getGoodsList = (param) => {
 	return new Promise((resolve, reject) => {
-		request._get('/api/goodsList', param).then(res => {
+		request._post('/api/goodsList', param).then(res => {
 			resolve(res.data)
 		})
 	})
