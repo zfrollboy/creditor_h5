@@ -1,0 +1,156 @@
+{
+	"pages": [
+		{
+			"path": "pages/creditorServer/creditorServer",
+			"style": {
+				"navigationBarTitleText": "右来帮"
+			}
+		},
+		{
+			"path": "pages/creditorDetail/creditorDetail",
+			"style": {
+				"navigationBarTitleText": "右来帮",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/startMiddler/startMiddler",
+			"style": {}
+		},
+		{
+			"path": "pages/offerToBuy/offerToBuy",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/step/idAuth/idAuth",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/register/record/record",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/bandCard/result/result",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/buySuccess/buySuccess",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/agreement/agreement",
+			"style": {
+				"navigationBarTitleText": "合同确认"
+			}
+		},
+		{
+			"path": "pages/register/myDebt/myDebt",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/register/create/create",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/register/detail/detail",
+			"style": {
+				"navigationBarTitleText": "帮帮值明细"
+			}
+		},
+		{
+			"path": "pages/step/agreement/agreement",
+			"style": {
+				"navigationBarTitleText": "服务协议"
+			}
+		},
+		{
+			"path": "pages/step/mall/mall",
+			"style": {
+				"navigationBarTitleText": "右来帮",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/authSuccess/authSuccess",
+			"style": {
+				"navigationBarTitleText":""
+			}
+		},
+		{
+			"path": "pages/bandCard/list/list",
+			"style": {
+				"navigationBarTitleText": "绑定支付宝",
+				"navigationBarBackgroundColor": "#F8F8F8"
+			}
+		},
+		{
+			"path": "pages/bandCard/verify/verify",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/bandCard/create/create",
+			"style": {
+				"navigationBarTitleText": "绑定支付宝"
+			}
+		},
+		{
+			"path": "pages/mallShareMiddle/mallShareMiddle",
+			"style": {
+				"navigationBarTitleText": "右来了商城"
+			}
+		},
+		{
+			"path": "pages/pdfView/pdfView",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "faceid-interactive-video-mpsdk/index/index",
+			"style": {
+				"disableScroll": true
+			}
+		},
+		{
+			"path": "faceid-interactive-video-mpsdk/room/room",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		}
+	],
+	"globalStyle": {
+		// #ifdef H5
+		"navigationStyle":"custom",
+		// #endif
+		"backgroundTextStyle": "dark",
+		"navigationBarBackgroundColor": "#ffffff",
+		"navigationBarTitleText": "",
+		"navigationBarTextStyle": "black"
+	},
+	"subPackages": [],
+	"condition":{
+		"current":-1,
+		"list":[
+			{
+				"name":"idAuth",
+				"path":"pages/step/idAuth/idAuth"
+			}
+		]
+	}
+}
