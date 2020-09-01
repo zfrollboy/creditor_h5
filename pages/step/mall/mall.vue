@@ -50,7 +50,7 @@
 		<cu-service></cu-service>
 		<view class="bg_poster" v-if="showShareImg">
 			<view class="poster">
-				<view class="img"><image :src="posterUrl" mode=""></image></view>
+				<view class="img"><image :src="posterUrl" mode="widthFix"></image></view>
 				<view class="icon" @click.stop="shareClose">
 					<view>长按图片后可保存到相册</view>
 					<image src="../../../static/share_close.png" mode=""></image>
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { getGoodsList, getShareList, checkH5Auth, authUpdate } from '../../../utils/request/api';
+import { getGoodsList, getShareList } from '../../../utils/request/api';
 import { baseUrl } from '../../../utils/request/request.js';
 const globalData = getApp().globalData; // pages/step/mall/mall.js
 import debtStep from '../../../components/debtStep/debtStep';
@@ -94,9 +94,7 @@ export default {
 			this.accountAuth(
 				options.code,
 				() => {
-					if (options.BizToken) {
-						this.checkH5Auth(options.BizToken);
-					}
+					this.getShareList();
 				},
 				err => {
 					this.isLoginShow = false;
@@ -104,21 +102,12 @@ export default {
 			);
 		} else {
 			if (!!uni.getStorageSync('uid') && !!uni.getStorageSync('token')) {
-				if (options.BizToken) {
-					this.checkH5Auth(options.BizToken);
-				} else {
 					this.getShareList();
-				}
 			} else {
 				this.setData({
 					isLoginShow: false
 				});
 			}
-		}
-		// #endif
-		// #ifdef MP-WEIXIN
-		if (options.BizToken) {
-			this.checkH5Auth(options.BizToken);
 		}
 		// #endif
 	},
@@ -265,71 +254,24 @@ export default {
 				}
 			});
 		},
-		authUpdate(idCard, name) {
-			authUpdate({
-				idCard,
-				name
-			}).then(res => {
-				if (res.code == 200) {
-					this.getShareList();
-				} else if (res.code == 99) {
-					this.setData({
-						isLoginShow: false
-					});
-					uni.showToast({
-						title: res.msg,
-						icon: 'none',
-						mask: true
-					});
-				} else {
-					uni.showToast({
-						title: res.msg,
-						icon: 'none',
-						mask: true
-					});
-				}
-			});
-		},
 		getShareList() {
 			getShareList().then(res => {
 				if (res.code == 200) {
 					this.goodsList = [];
 					this.getGoodsList();
 
-					// if (res.data.finish_status == 1) {
-					// 	uni.redirectTo({
-					// 		url: '/pages/creditorDetail/creditorDetail?new=1'
-					// 	});
-					// } else {
+					if (res.data.finish_status == 1) {
+						uni.redirectTo({
+							url: '/pages/creditorDetail/creditorDetail?new=1'
+						});
+					} else {
 					this.inviteUser = res.data.list || [];
 					this.bond_num = res.data.bond_num;
-					// }
+					}
 				} else if (res.code == 99) {
 					this.setData({
 						isLoginShow: false
 					});
-					uni.showToast({
-						title: res.msg,
-						icon: 'none',
-						mask: true
-					});
-				} else {
-					uni.showToast({
-						title: res.msg,
-						icon: 'none',
-						mask: true
-					});
-				}
-			});
-		},
-		checkH5Auth(bizToken) {
-			checkH5Auth({
-				bizToken: bizToken
-			}).then(res => {
-				if (res.code == 200) {
-					this.authUpdate(res.data.IdCard, res.data.Name);
-				} else if (res.code == 99) {
-					this.isLoginShow = false;
 					uni.showToast({
 						title: res.msg,
 						icon: 'none',
@@ -581,15 +523,15 @@ export default {
 	z-index: 100;
 	.poster {
 		width: 600rpx;
-		height: 1067rpx;
+		// height: 1067rpx;
 		.img {
 			width: 600rpx;
-			height: 900rpx;
+			min-height: 900rpx;
 			background-color: #fff;
 		}
 		image {
 			width: 600rpx;
-			height: 900rpx;
+			// height: 900rpx;
 		}
 		.icon {
 			color: #fff;

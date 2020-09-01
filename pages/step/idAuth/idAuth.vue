@@ -58,11 +58,18 @@ export default {
 
 	onLoad: function(options) {
 		if (options.code) {
-			this.accountAuth(options.code, () => {},err=>{
+			this.accountAuth(options.code, () => {
+				if (options.BizToken) {
+					this.checkH5Auth(options.BizToken);
+				}
+			},err=>{
 				this.isLoginShow=false
 			});
 		} else {
 			if (!!uni.getStorageSync('uid') && !!uni.getStorageSync('token')) {
+				if (options.BizToken) {
+					this.checkH5Auth(options.BizToken);
+				}
 			} else {
 				this.setData({
 					isLoginShow: false
@@ -84,7 +91,28 @@ export default {
 				agreeState: val
 			});
 		},
-
+		checkH5Auth(bizToken) {
+			checkH5Auth({
+				bizToken: bizToken
+			}).then(res => {
+				if (res.code == 200) {
+					this.authUpdate();
+				} else if (res.code == 99) {
+					this.isLoginShow = false;
+					uni.showToast({
+						title: res.msg,
+						icon: 'none',
+						mask: true
+					});
+				} else {
+					uni.showToast({
+						title: res.msg,
+						icon: 'none',
+						mask: true
+					});
+				}
+			});
+		},
 		checkInput() {
 			let idReg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/;
 			let nameReg = /^[\u4e00-\u9fa5A-Za-z]+$/;
@@ -118,7 +146,7 @@ export default {
 			h5Auth({
 				IdCard: this.idNum,
 				Name: this.realName,
-				RedirectUrl: location.origin + '/pages/step/mall/mall'
+				RedirectUrl: location.origin + '/pages/step/idAuth/idAuth'
 			}).then(res => {
 				this.submitLoading = false;
 				if (res.code == 200) {
